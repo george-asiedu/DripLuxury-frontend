@@ -1,0 +1,53 @@
+<div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white gap-[2rem]">
+    <div class="max-w-full hidden lg:block">
+        <img src="../../../assets/login.jpg" class="h-screen w-full" alt="signup-image">
+    </div>
+    <div class="max-w-full h-screen flex flex-col py-[3rem] md:py-[7rem] lg:py-[6rem] xl:py-[7rem]">
+        <h2 class="text-black italic font-bold text-center text-lg md:text-xl lg:text-3xl mb-[8px]">Welcome Back!</h2>
+        <h4 class="text-grey font-medium text-center text-sm mb-[1rem]">Login into your account</h4>
+
+        <form (ngSubmit)="login()" [formGroup]="loginForm" class="flex flex-col gap-[16px] px-[2.5rem] md:px-[3.5rem] lg:px-[5rem] xl:px-[12rem] mt-[18px] lg:mt-[24px] xl:mt-[3rem]">
+            <div class="flex flex-col gap-[4px]">
+                <label for="email" class="font-medium text-gray tracking-wide leading-none">Email</label>
+                <input 
+                    type="email" 
+                    formControlName="email" 
+                    placeholder="Enter your email address"
+                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:border-violet focus:text-black"
+                    
+                >
+                <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)" class="text-red text-sm">
+                    <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
+                    <div *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email</div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-[4px]">
+                <label for="password" class="font-medium text-gray tracking-wide leading-none">Password</label>
+                <input 
+                    type="password" 
+                    formControlName="password" 
+                    placeholder="Enter your password"
+                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:border-violet focus:text-black"
+                    required
+                >
+                <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)" class="text-red text-sm">
+                    <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
+                </div>
+            </div>          
+            <button 
+                type="submit" 
+                [disabled]="loginForm.invalid || isLoading"
+                class="bg-violet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
+            >
+                <span *ngIf="isLoading">
+                    <app-spinner></app-spinner>
+                </span>
+                <span *ngIf="!isLoading">Login</span>
+            </button>
+            <div class="flex items-center gap-[5px] justify-center">
+                <p class="text-grey text-sm tracking-wide">Don't have an account?</p>
+                <p routerLink="/signup" class="text-violet text-sm font-medium tracking-wide cursor-pointer active:text-lightViolet hover:text-purple-700">Signup</p>
+            </div>
+        </form>
+    </div>
+</div>
