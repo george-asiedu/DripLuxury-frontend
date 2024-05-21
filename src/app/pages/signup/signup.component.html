@@ -1,12 +1,21 @@
-<div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white gap-[2rem]">
+<div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
     <div class="max-w-full hidden lg:block">
-        <img src="../../../assets/signup.jpg" class="h-screen w-full" alt="signup-image">
+        <img src="https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="h-screen w-full" alt="signup-image">
     </div>
-    <div class="max-w-full h-screen flex flex-col py-[3rem] md:py-[7rem] lg:py-[2rem] xl:py-[7rem]">
+    <div class="max-w-full h-screen flex flex-col py-[3rem] md:py-[7rem] lg:py-[2rem] 2xl:py-[7rem]">
         <h2 class="text-black italic font-bold text-center text-lg md:text-xl lg:text-3xl mb-[8px]">DripLuxury Clothing</h2>
-        <h4 class="text-grey font-medium text-center text-sm mb-[1rem]">Create an account for free to get access to our products.</h4>
+        <h4 class="text-grey font-medium text-center text-sm">Create an account for free to get access to our products.</h4>
 
-        <form (ngSubmit)="signup()" [formGroup]="signupForm" class="flex flex-col gap-[16px] px-[2.5rem] md:px-[3.5rem] lg:px-[5rem] xl:px-[12rem] mt-[18px] lg:mt-[24px] xl:mt-[3rem]">
+        @if (isLoading) {
+            <app-spinner></app-spinner>
+        }
+
+        <form 
+            (ngSubmit)="signup()" 
+            [formGroup]="signupForm" 
+            class="flex flex-col gap-[16px] px-[2.5rem] md:px-[3.5rem] lg:px-[5rem] 2xl:px-[12rem] mt-[18px] lg:mt-[24px] xl:mt-[3rem]"
+            novalidate
+        >
             <div class="flex flex-col gap-[4px]">
                 <label for="firstName" class="font-medium text-gray tracking-wide leading-none">First Name</label>
                 <input 
@@ -67,7 +76,6 @@
                 >
                 <div *ngIf="signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched" class="text-red text-sm">
                     <div *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</div>
-                    <div *ngIf="signupForm.hasError('passwordsMatch')" class="text-red text-sm">Passwords do not match</div>
                 </div>
             </div>           
             <button 

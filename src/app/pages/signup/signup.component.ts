@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AuthServiceService } from '../../service/auth/auth-service.service';
 import { Signup } from '../../model/signup';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { SpinnerComponent } from '../../components/spinner/spinner.component';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule, SpinnerComponent],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink, CommonModule, SpinnerComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
@@ -26,7 +26,7 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator })
+    })
   }
 
  signup() {
@@ -36,44 +36,42 @@ export class SignupComponent {
 
   this.isLoading = true
 
-  const newUser: Signup = {
-    firstName: this.signupForm.value.firstName,
-    lastName: this.signupForm.value.lastName,
-    email: this.signupForm.value.email,
-    password: this.signupForm.value.password,
-    confirmPassword: this.signupForm.value.confirmPassword
-  }
+  const newUser: Signup = this.signupForm.value
 
   setTimeout(() => {
     this.isLoading = false
   }, 3000)
 
-  this.as.signup(newUser as Signup).subscribe({
+  this.as.signup(newUser).subscribe({
     next: () => {
-      this.toastr.success('Please wait!', 'Account created successfully')
+      setTimeout(() => {
+        this.toastr.success('Please wait!', 'Account created successfully')
+      }, 1000)
       setTimeout(() => {
         this.router.navigate(['./login'])
-      }, 4000)      
+      }, 6000)      
     },
     error: (err) => {
       setTimeout(() => {
         this.isLoading = false
-      }, 3000)
-      this.toastr.error(err.error.message || 'Signup failed', 'Sorry')
+      }, 2000)
+      setTimeout(() => {
+        this.toastr.error(err.error.message || 'Signup failed', 'Sorry')
+      }, 2000)
     }
   })
  }
 
  
-passwordsMatchValidator(formGroup: FormGroup) {
-  const password = formGroup.get('password')?.value;
-  const confirmPassword = formGroup.get('confirmPassword')?.value;
+// passwordsMatchValidator(formGroup: FormGroup) {
+//   const password = formGroup.get('password')?.value;
+//   const confirmPassword = formGroup.get('confirmPassword')?.value;
 
-  if (password !== confirmPassword) {
-    formGroup.get('confirmPassword')?.setErrors({ passwordsMatch: true })
-  } else {
-    formGroup.get('confirmPassword')?.setErrors(null)
-  }
-}
+//   if (password !== confirmPassword) {
+//     formGroup.get('confirmPassword')?.setErrors({ passwordsMatch: true })
+//   } else {
+//     formGroup.get('confirmPassword')?.setErrors(null)
+//   }
+// }
 
 }
