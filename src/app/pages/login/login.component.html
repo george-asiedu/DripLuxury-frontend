@@ -1,20 +1,29 @@
-<div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white gap-[2rem]">
+<div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
     <div class="max-w-full hidden lg:block">
-        <img src="../../../assets/login.jpg" class="h-screen w-full" alt="signup-image">
+        <img src="https://images.pexels.com/photos/2887718/pexels-photo-2887718.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="h-screen w-full" alt="login-image">
     </div>
-    <div class="max-w-full h-screen flex flex-col py-[3rem] md:py-[7rem] lg:py-[6rem] xl:py-[7rem]">
+    <div class="max-w-full h-screen flex flex-col py-[8rem] md:py-[10rem] lg:py-[3.5rem] 2xl:py-[7rem]">
         <h2 class="text-black italic font-bold text-center text-lg md:text-xl lg:text-3xl mb-[8px]">Welcome Back!</h2>
         <h4 class="text-grey font-medium text-center text-sm mb-[1rem]">Login into your account</h4>
 
-        <form (ngSubmit)="login()" [formGroup]="loginForm" class="flex flex-col gap-[16px] px-[2.5rem] md:px-[3.5rem] lg:px-[5rem] xl:px-[12rem] mt-[18px] lg:mt-[24px] xl:mt-[3rem]">
+        @if (isLoading) {
+            <app-spinner></app-spinner>
+        }
+
+        <form 
+            (ngSubmit)="login()" 
+            [formGroup]="loginForm" 
+            class="flex flex-col gap-[16px] px-[2.5rem] md:px-[8rem] lg:px-[6rem] 2xl:px-[12rem] mt-[18px] lg:mt-[24px] xl:mt-[3rem]"
+            novalidate
+        >
             <div class="flex flex-col gap-[4px]">
-                <label for="email" class="font-medium text-gray tracking-wide leading-none">Email</label>
+                <label for="email" class="text-sm font-medium text-gray tracking-wide leading-none">Email</label>
                 <input 
                     type="email" 
                     formControlName="email" 
                     placeholder="Enter your email address"
-                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:border-violet focus:text-black"
-                    
+                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:text-sm focus:border-violet focus:text-black"
+                    required
                 >
                 <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)" class="text-red text-sm">
                     <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
@@ -22,31 +31,45 @@
                 </div>
             </div>
             <div class="flex flex-col gap-[4px]">
-                <label for="password" class="font-medium text-gray tracking-wide leading-none">Password</label>
+                <label for="password" class="text-sm font-medium text-gray tracking-wide leading-none">Password</label>
                 <input 
                     type="password" 
                     formControlName="password" 
                     placeholder="Enter your password"
-                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:border-violet focus:text-black"
+                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:text-sm focus:border-violet focus:text-black"
                     required
                 >
                 <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)" class="text-red text-sm">
                     <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
                 </div>
-            </div>          
+            </div>
+            <p routerLink="/reset-password" class="text-xs text-violet hover:text-lightViolet font-medium cursor-pointer flex justify-end -mt-[8px] tracking-wide">Forgot password?</p>          
             <button 
                 type="submit" 
                 [disabled]="loginForm.invalid || isLoading"
                 class="bg-violet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
             >
-                <span *ngIf="isLoading">
+                <span *ngIf="isLoading" class="flex items-center justify-center gap-[1rem]">
                     <app-spinner></app-spinner>
+                    Logging in
                 </span>
                 <span *ngIf="!isLoading">Login</span>
             </button>
+            <img src="../../../assets/component/or.png" class="w-[70%] mx-auto -mt-[8px]" alt="or-image">
+            <div class="flex items-center gap-[10px]">
+                <button type="button" (click)="googleLogin()" class="border border-lightGray hover:bg-purple-50 w-[200px] rounded-md shadow-sm flex items-center justify-center h-[40px] md:h-[60px] lg:h-[40px]">
+                    <img src="../../../assets/component/google.svg" class="w-[20%] 2xl:w-[14%]" alt="google-icon">
+                </button>
+                <button type="button" class="border border-lightGray hover:bg-purple-50 w-[200px] rounded-md shadow-sm flex items-center justify-center h-[40px] md:h-[60px] lg:h-[40px]">
+                    <img src="../../../assets/component/facebook.svg" class="w-[20%] 2xl:w-[14%]" alt="facebook-icon">
+                </button>
+                <button type="button" class="border border-lightGray hover:bg-purple-50 w-[200px] rounded-md shadow-sm flex items-center justify-center h-[40px] md:h-[60px] lg:h-[40px]">
+                    <img src="../../../assets/component/logo-black.png" class="w-[18%] 2xl:w-[14%]" alt="x-icon">
+                </button>
+            </div>
             <div class="flex items-center gap-[5px] justify-center">
                 <p class="text-grey text-sm tracking-wide">Don't have an account?</p>
-                <p routerLink="/signup" class="text-violet text-sm font-medium tracking-wide cursor-pointer active:text-lightViolet hover:text-purple-700">Signup</p>
+                <p routerLink="/signup" class="text-violet text-xs font-medium tracking-wide cursor-pointer active:text-lightViolet hover:text-purple-700">Signup</p>
             </div>
         </form>
     </div>
