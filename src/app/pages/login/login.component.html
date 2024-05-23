@@ -1,14 +1,10 @@
 <div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
     <div class="max-w-full hidden lg:block">
-        <img src="https://images.pexels.com/photos/2887718/pexels-photo-2887718.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="h-screen w-full" alt="login-image">
+        <img [src]="loginImage" class="h-screen w-full" alt="login-image">
     </div>
     <div class="max-w-full h-screen flex flex-col py-[8rem] md:py-[10rem] lg:py-[3.5rem] 2xl:py-[7rem]">
-        <h2 class="text-black italic font-bold text-center text-lg md:text-xl lg:text-3xl mb-[8px]">Welcome Back!</h2>
-        <h4 class="text-grey font-medium text-center text-sm mb-[1rem]">Login into your account</h4>
-
-        @if (isLoading) {
-            <app-spinner></app-spinner>
-        }
+        <h2 class="text-black italic font-bold text-center text-lg lg:text-xl leading-none mb-[5px]">Welcome Back!</h2>
+        <h4 class="text-grey font-medium text-center text-sm mb-[1rem] leading-none">Login into your account</h4>
 
         <form 
             (ngSubmit)="login()" 
@@ -47,13 +43,13 @@
             <button 
                 type="submit" 
                 [disabled]="loginForm.invalid || isLoading"
-                class="bg-violet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
+                class="bg-violet disabled:bg-lightViolet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
             >
-                <span *ngIf="isLoading" class="flex items-center justify-center gap-[1rem]">
+                <span *ngIf="isLoading" class="flex items-center justify-center text-sm gap-[1rem]">
                     <app-spinner></app-spinner>
                     Logging in
                 </span>
-                <span *ngIf="!isLoading">Login</span>
+                <span *ngIf="!isLoading" class="text-sm">Login</span>
             </button>
             <img src="../../../assets/component/or.png" class="w-[70%] mx-auto -mt-[8px]" alt="or-image">
             <div class="flex items-center gap-[10px]">

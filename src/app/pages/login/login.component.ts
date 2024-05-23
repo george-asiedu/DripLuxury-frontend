@@ -17,6 +17,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   isLoading: boolean = false
+  loginImage = 'https://img.freepik.com/free-photo/stylish-black-man-city-with-shopping-bags_1157-33168.jpg?t=st=1716394003~exp=1716397603~hmac=4ee51ee81c105b068742e29acbeaec895a1365ad7d5391207dfcf37e16364ee1&w=900'
 
   constructor(
     private as: AuthServiceService, 

@@ -18,6 +18,7 @@ export class SignupComponent {
   signupForm: FormGroup
   error: string = ''
   isLoading: boolean = false
+  signupImage: string = 'https://img.freepik.com/free-photo/emotive-scared-woman-stylish-clothes-chooses-dress-high-heel-shoes-dress-birthday-party-holds-smartphone_273609-43425.jpg?t=st=1716394446~exp=1716398046~hmac=fd402fbb2e8881800be3b0e12d7d110cb572595f646a57a5bde7007618a07c63&w=900'
 
   constructor(private as: AuthServiceService, private fb: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.signupForm = this.fb.group({

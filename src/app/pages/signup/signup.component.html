@@ -1,14 +1,10 @@
 <div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
     <div class="max-w-full hidden lg:block">
-        <img src="https://images.pexels.com/photos/2690323/pexels-photo-2690323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="h-screen w-full" alt="signup-image">
+        <img [src]="signupImage" class="h-screen" alt="signup-image">
     </div>
-    <div class="max-w-full h-screen flex flex-col py-[3rem] md:py-[7rem] lg:py-[2rem] 2xl:py-[7rem]">
-        <h2 class="text-black italic font-bold text-center text-lg md:text-xl lg:text-3xl mb-[8px]">DripLuxury Clothing</h2>
-        <h4 class="text-grey font-medium text-center text-sm">Create an account for free to get access to our products.</h4>
-
-        @if (isLoading) {
-            <app-spinner></app-spinner>
-        }
+    <div class="max-w-full h-screen flex flex-col py-[3rem] md:py-[7rem] lg:py-[1.5rem] 2xl:py-[7rem]">
+        <h2 class="text-black italic font-bold text-center text-lg mb-[8px] leading-none">DripLuxury Clothing</h2>
+        <h4 class="text-grey font-medium text-center text-xs">Create an account for free to get access to our products.</h4>
 
         <form 
             (ngSubmit)="signup()" 
@@ -17,7 +13,7 @@
             novalidate
         >
             <div class="flex flex-col gap-[4px]">
-                <label for="firstName" class="font-medium text-gray tracking-wide leading-none">First Name</label>
+                <label for="firstName" class="text-sm font-medium text-gray tracking-wide leading-none">First Name</label>
                 <input 
                     type="text" 
                     formControlName="firstName" 
@@ -28,7 +24,7 @@
                 <div *ngIf="signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched" class="text-red text-sm">First name is required</div>
             </div>
             <div class="flex flex-col gap-[4px]">
-                <label for="lastName" class="font-medium text-gray tracking-wide leading-none">Last Name</label>
+                <label for="lastName" class="text-sm font-medium text-gray tracking-wide leading-none">Last Name</label>
                 <input 
                     type="text" 
                     formControlName="lastName" 
@@ -39,7 +35,7 @@
                 <div *ngIf="signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched" class="text-red text-sm">Last name is required</div>
             </div>
             <div class="flex flex-col gap-[4px]">
-                <label for="email" class="font-medium text-gray tracking-wide leading-none">Email</label>
+                <label for="email" class="text-sm font-medium text-gray tracking-wide leading-none">Email</label>
                 <input 
                     type="email" 
                     formControlName="email" 
@@ -53,7 +49,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-[4px]">
-                <label for="password" class="font-medium text-gray tracking-wide leading-none">Password</label>
+                <label for="password" class="text-sm font-medium text-gray tracking-wide leading-none">Password</label>
                 <input 
                     type="password" 
                     formControlName="password" 
@@ -66,7 +62,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-[4px]">
-                <label for="confirmPassword" class="font-medium text-gray tracking-wide leading-none">Confirm Password</label>
+                <label for="confirmPassword" class="text-sm font-medium text-gray tracking-wide leading-none">Confirm Password</label>
                 <input 
                     type="password" 
                     formControlName="confirmPassword" 
@@ -81,12 +77,13 @@
             <button 
                 type="submit" 
                 [disabled]="signupForm.invalid || isLoading"
-                class="bg-violet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
+                class="bg-violet disabled:bg-lightViolet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
             >
-                <span *ngIf="isLoading">
+                <span *ngIf="isLoading" class="flex items-center justify-center text-sm gap-[1rem]">
                     <app-spinner></app-spinner>
+                    Creating your account
                 </span>
-                <span *ngIf="!isLoading">Create an account</span>
+                <span *ngIf="!isLoading" class="text-sm">Create your account</span>
             </button>
             <div class="flex items-center gap-[5px] justify-center">
                 <p class="text-grey text-sm tracking-wide">Already have an account?</p>

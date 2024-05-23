@@ -16,14 +16,13 @@ export class NewArrivalsComponent implements OnInit {
   constructor(private productService: ProductsServiceService, private router: Router) {}
 
   ngOnInit(): void {
-      // this.productService.getAllProducts().subscribe({
-      //   next: (response) => {
-      //     console.log(response)
-      //     this.products = response
-      //   },
-      //   error: (err) => {
-      //     console.error('Error fetching products', err)
-      //   }
-      // })
+      this.productService.getAllProducts().subscribe({
+        next: (response) => {
+          this.products = response
+        },
+        error: (err) => {
+          console.error('Error fetching products', err)
+        }
+      })
   }
 }
