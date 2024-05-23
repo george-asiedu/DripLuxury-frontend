@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Blue Lacoste",
+        "productImage": "https://img.freepik.com/free-photo/shirt-clothes_1203-2958.jpg?t=st=1716396345~exp=1716399945~hmac=0111bf9222a7c30583b835c81883853c15ccc1ea9da88ba2c16deb11082130a3&w=900",
+        "price": 150.00,
+        "description": "Polo",
+        "category": "Men",
+        "tags": "Tops",
+        "rating": 4.8,
+        "dressStyle": "Business",
+        "colors": ["blue", "lime", "navy"],
+        "size": ["L", "XL", "XXL"]
+    }
+]
