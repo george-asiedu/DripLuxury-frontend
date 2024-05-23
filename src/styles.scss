@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "Bitter", serif;
+}
+
+.active {
+    color: #8A33FD;
+    font-weight: bold;
+}
+
+.icon-active {
+    background-color: #8A33FD;
+}
+
+.icon-active svg,
+svg:hover {
+    filter: brightness(0) invert(1);
+}

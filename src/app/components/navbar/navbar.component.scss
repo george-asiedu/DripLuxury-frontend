@@ -1,0 +1,38 @@
+@media screen and (max-width: 998px) {
+    .side-nav, .hidden {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+    
+        a {
+            padding: 8px 8px 8px 32px;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+    
+            &:hover {
+                color: #f1f1f1;
+            }
+        }
+    
+        .close {
+            position: absolute;
+            top: 3%;
+            right: 30px;
+            margin-left: 50px;
+            width: 8%;
+        }
+    }
+}
+
+@media screen and (max-height: 450px) {
+    .side-nav {
+        padding-top: 15px;
+    }
+}
