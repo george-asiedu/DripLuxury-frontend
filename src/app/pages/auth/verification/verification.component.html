@@ -1,0 +1,46 @@
+<div class="w-full h-screen grid grid-cols-1 lg:grid-cols-2 bg-white gap-[2rem]">
+    <div class="max-w-full hidden lg:block">
+        <img src="../../../assets/auth/img2.png" class="h-screen w-full" alt="login-image">
+    </div>
+    <div class="max-w-full h-screen flex flex-col py-[8rem] md:py-[10rem] lg:py-[6rem] 2xl:py-[15rem]">
+        <h2 class="text-black italic font-bold text-center text-lg md:text-xl lg:text-3xl mb-[8px]">Verification</h2>
+        <h4 class="text-grey font-medium text-center text-sm mb-[1rem]">Enter the code sent to your email to verify</h4>
+
+        @if (isLoading) {
+            <app-spinner></app-spinner>
+        }
+
+        <form 
+            (ngSubmit)="verify()" 
+            [formGroup]="verifyForm" 
+            class="flex flex-col gap-[16px] px-[2.5rem] md:px-[3.5rem] lg:px-[6rem] 2xl:px-[12rem] mt-[18px] lg:mt-[24px] xl:mt-[3rem]"
+            novalidate
+        >
+            <div class="flex flex-col gap-[4px]">
+                <label for="verificationCode" class="font-medium text-gray tracking-wide leading-none">Verification Code</label>
+                <input 
+                    type="text" 
+                    formControlName="code" 
+                    placeholder="Enter code"
+                    class="border border-grey rounded py-[6px] px-[10px] placeholder:text-sm caret-violet focus:outline-none focus:border-violet focus:text-black"
+                    required
+                >
+                <div *ngIf="verifyForm.get('code')?.invalid && (verifyForm.get('code')?.touched || verifyForm.get('email')?.dirty)" class="text-red text-sm">
+                    <div *ngIf="verifyForm.get('code')?.errors?.['required']">Code is required</div>
+                    <div *ngIf="verifyForm.get('code')?.errors?.['code']">Invalid code</div>
+                </div>
+            </div>
+            <button 
+                type="submit" 
+                [disabled]="verifyForm.invalid || isLoading"
+                class="bg-violet py-[8px] text-white text-center font-bold tracking-wide rounded border-none hover:bg-lightViolet focus:bg-lightViolet cursor-pointer"
+            >
+                <span *ngIf="isLoading" class="flex items-center justify-center gap-[1rem]">
+                    Verifying
+                    <app-spinner></app-spinner>
+                </span>
+                <span *ngIf="!isLoading">Verify Code</span>
+            </button>
+        </form>
+    </div>
+</div>
