@@ -41,7 +41,7 @@ export class AuthServiceService {
     const { token } = params
     if(token) {
       localStorage.setItem('authToken', token)
-      this.router.navigate(['/signup'])
+      this.router.navigate([''])
     }
   }
 }
