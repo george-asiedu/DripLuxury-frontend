@@ -8,14 +8,19 @@
 
 .active {
     color: #8A33FD;
-    font-weight: bold;
+    font-weight: bold;   
 }
 
 .icon-active {
     background-color: #8A33FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
 }
 
-.icon-active svg,
-svg:hover {
+.icon-active svg {
     filter: brightness(0) invert(1);
 }
