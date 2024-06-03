@@ -1,13 +1,17 @@
 export interface Products {
-    id: number,
+    id: string,
+    type: string,
     name: string,
     productImage: string,
+    imageOverlay: string,
     price: number,
-    description: string,
+    shortDescription: string,
+    longDescription: string,
     category: string,
     tags: string,
     rating: number,
-    dressStyle: string,
-    colors: string[],
-    size: string[]
+    size: string[],
+    highlights: string[],
+    washingInstructions: string;
+    composition: string[]
 }

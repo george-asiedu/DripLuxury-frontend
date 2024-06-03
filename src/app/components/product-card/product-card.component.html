@@ -1,0 +1,17 @@
+<div class="small flex flex-col gap-[10px] mb-[10px]" routerLink="/{{ productItems.id }}">
+    <div class="w-full container shadow-sm">
+        <img [src]="productItems.productImage" alt="productItems.name">
+        <div class="overlay">
+            <img [src]="productItems.imageOverlay" class="overlay-image" alt="productItems.name">
+        </div>
+    </div>    
+    <div class="flex flex-col gap-[10px]">
+        <span>
+            <h4 class="text-[10px] md:text-[14px] 2xl:text-base font-bold text-gray">{{ productItems.name }}</h4>
+            <p class="text-[8px] md:text-[10px] 2xl:text-base text-grey">{{ productItems.shortDescription }}</p>
+        </span>
+        <span class="hover:text-red text-black font-medium tracking-wide text-[12px] md:text-[13px]">
+            ${{ productItems.price }}
+        </span>
+    </div>
+</div>     

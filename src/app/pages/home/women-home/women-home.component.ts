@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { Products } from '../../../model/products';
 import { ProductsServiceService } from '../../../service/products/products-service.service';
+import { NgFor } from '@angular/common';
 import { ProductCardComponent } from '../../../components/product-card/product-card.component';
-import { NgForOf } from '@angular/common';
 
 @Component({
-  selector: 'app-new-arrivals',
+  selector: 'app-women-home',
   standalone: true,
-  imports: [ProductCardComponent, NgForOf],
-  templateUrl: './new-arrivals.component.html',
-  styleUrl: './new-arrivals.component.scss'
+  imports: [NgFor, ProductCardComponent],
+  templateUrl: './women-home.component.html',
+  styleUrl: './women-home.component.scss'
 })
-export class NewArrivalsComponent {
+export class WomenHomeComponent {
   products: Products[] = []
 
   constructor(private productService: ProductsServiceService) {}
@@ -19,9 +19,9 @@ export class NewArrivalsComponent {
   ngOnInit(): void {
       this.productService.getAllProducts().subscribe({
         next: (response: Products[]) => {
-          this.products = response.filter(product => product.type.includes('new in'))
+          this.products = response.filter(product => product.category.includes('women'))
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Error fetching products', err)
         }
       })
