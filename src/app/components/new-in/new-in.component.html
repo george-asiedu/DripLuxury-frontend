@@ -1,0 +1,23 @@
+<div class="mt-[4rem] pb-[2rem] flex flex-col px-[6%] lg:px-[5%] w-full bg-white h-auto">
+  @if(isLoading){
+    <app-spinner/>
+  }
+  <div class="w-full">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[12px]">
+      <app-product-card
+        *ngFor="let product of products" [productItems]="product"
+      >
+      </app-product-card>
+    </div>
+  </div>
+
+  @if (products.length === 0 && !isLoading) {
+    <div class="text-red w-full text-center tracking-wide">
+      Whoops... 😒 No products found.
+    </div>
+  } @else if (!isLoading && error) {
+    <div class="text-error w-full text-center tracking-wide">
+      Whoops... 😒 Failed to fetch products.
+    </div>
+  }
+</div>
