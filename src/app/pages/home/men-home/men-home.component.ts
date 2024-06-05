@@ -17,7 +17,7 @@ export class MenHomeComponent {
   constructor(private productService: ProductsServiceService) {}
 
   ngOnInit(): void {
-      this.productService.getMenProducts(14).subscribe({
+      this.productService.getMenProducts(8).subscribe({
         next: (response: Products[]) => {
           this.products = response.filter(product => product.type !== 'new in' && product.category.includes('men'))
         },

@@ -1,0 +1,29 @@
+<div class="mt-[4rem] pb-[2rem] flex flex-col px-[6%] lg:px-[5%] w-full bg-white h-auto">
+  <span class="mb-[2rem]">
+    <h2 class="font-bold uppercase tracking-wide text-3xl lg:text-[34px] mb-[5px]">sales is here | enjoy up to 50% off</h2>
+    <p class="text-sm md:w-[700px]">
+      Your style, our unique curation. Start exploring this 
+      season's highlights with up to 50% off selected styles now.
+    </p>
+  </span>
+
+  <div class="w-full">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[12px]">
+      <app-product-card
+        *ngFor="let product of products" [productItems]="product"
+      >
+      </app-product-card>
+    </div>
+  </div>
+
+  @if (products.length === 0 && !isLoading) {
+    <div class="text-red w-full text-center tracking-wide">
+      Whoops... 😒 No products found.
+    </div>
+  } 
+  @if (error) {
+    <div class="text-error w-full text-center tracking-wide">
+      Whoops... 😒 Failed to fetch products.
+    </div>
+  }
+</div>

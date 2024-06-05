@@ -1,0 +1,97 @@
+<div class="relative mt-[5rem] md:mt-[10rem] px-[6%] lg:px-[5%]">
+  <div class="img">
+    <div class="h-[40vh] md:h-[40vh] lg:h-[60vh] 2xl:h-[40vh] text">
+      <div class="bg-text">
+        <h1 class="md:w-[600px] lg:w-[700px] 2xl:w-full md:mx-auto text-left md:text-center uppercase text-[30px] md:text-[48px] md:leading-[50px] font-semibold 2xl:text-5xl tracking-wide mb-[16px] md:mb-[24px]">sale now on: up to 50% off</h1>
+        <p class="tracking-wide text-left md:text-center mb-[20px]">Your style, our unique curation - shop this season's highlights</p>
+        <button type="button" routerLink="sales" class="cursor-pointer w-full md:w-fit text-[14px] capitalize tracking-wide border rounded-lg hover:bg-[#686767] py-[8px] md:py-[10px] 2xl:py-[8px] px-[2rem]">Shop now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-[4rem] pb-[2rem] flex flex-col px-[6%] lg:px-[5%] w-full bg-white h-auto">
+  @if(isLoading){
+    <app-spinner/>
+  }
+  <div class="w-full mb-[2rem]">
+    <div class="block md:flex md:items-center md:justify-between mb-[2rem]">
+      <h3 class="text-sm tracking-wide md:text-lg lg:text-xl">Best of sale: shop our editor's picks</h3>
+      <button type="button" routerLink="sales" class="cursor-pointer hidden lg:block text-[14px] font-bold capitalize tracking-wide border border-grey rounded-lg hover:bg-[#f7f4f4] md:py-[6px] px-[1.3rem]">Shop now</button>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[12px]">
+      <app-product-card
+        *ngFor="let product of products" [productItems]="product"
+      >
+      </app-product-card>
+    </div>
+    <button type="button" routerLink="new-in" class="cursor-pointer md:block lg:hidden mt-[15px] w-full text-[14px] capitalize tracking-wide border border-grey rounded-lg hover:bg-[#f7f4f4] py-[8px] md:w-[130px] md:mx-auto font-bold">Shop now</button>
+  </div>
+
+  <div class="w-full mb-[2rem]">
+    <div class="block md:flex md:items-center md:justify-between mb-[2rem]">
+      <h3 class="text-sm tracking-wide md:text-lg lg:text-xl">New in: handpicked daily from the world's best brands and boutiques</h3>
+      <button type="button" routerLink="new-in" class="cursor-pointer hidden lg:block text-[14px] font-bold capitalize tracking-wide border border-grey rounded-lg hover:bg-[#f7f4f4] md:py-[6px] px-[1.3rem]">Shop now</button>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[12px]">
+      <app-product-card
+        *ngFor="let product of newIn" [productItems]="product"
+      >
+      </app-product-card>
+    </div>
+    <button type="button" routerLink="new-in" class="cursor-pointer md:block lg:hidden mt-[15px] w-full text-[14px] capitalize tracking-wide border border-grey rounded-lg hover:bg-[#f7f4f4] py-[8px] md:w-[130px] md:mx-auto font-bold">Shop now</button>
+  </div>
+
+  <div class="w-full mb-[2rem] flex flex-col-reverse gap-[10px] md:gap-[1rem] lg:grid lg:grid-cols-2">
+    <div class="flex flex-col md:items-center md:justify-center md:gap-[10px] lg:gap-[2rem]">
+      <h4 class="font-medium tracking-wide mb-[8px]">It's vacation season</h4>
+      <p class="text-xs md:text-base lg:px-[2rem] md:text-center">
+        Take a deep dive into the style of the summer, featuring Bally and more
+      </p>
+      <button type="button" routerLink="vacation" class="cursor-pointer md:block mt-[15px] w-full text-[14px] capitalize tracking-wide border border-grey rounded-lg hover:bg-[#f7f4f4] py-[8px] md:w-[130px] md:mx-auto font-bold">Shop now</button>
+    </div>
+    <img [src]="vacationWear" alt="vacation-wear">
+  </div>
+
+  <div class="w-full mb-[2rem] flex flex-col gap-[10px] md:gap-[2.5rem] lg:gap-[1rem] lg:grid lg:grid-cols-2">
+    <div class="flex flex-col gap-[10px] md:justify-center md:gap-[1.5rem] lg:gap-[1rem]" routerLink="clothing">
+      <img [src]="shirt" alt="vacation-wear">
+      <span>
+        <h4 class="font-medium tracking-wide mb-[5px] uppercase text-sm lg:text-lg">Elevate your t-shirt game</h4>
+        <p class="text-xs">
+          You can never have too many - update your rotation with 
+          standout examples by Amiri and more
+        </p>
+      </span>
+    </div>
+    <div class="relative">
+      <img [src]="shoesImage" alt="shoes-image">
+      <div class="overlay">
+        <h4 class="tracking-wide text-xs md:text-base">Elegant black leather shoes for men</h4>
+        <button type="button" routerLink="shoes" class="cursor-pointer block mt-[15px] text-[10px] md:text-[14px] capitalize tracking-wide border border-white rounded-lg hover:bg-[#222222] py-[5px] md:py-[8px] px-[1rem] md:w-[130px] md:mx-auto font-bold">Shop now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <h2 class="tracking-wide mb-[1rem] text-center font-medium lg:text-lg">Trending now</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1rem]">
+      <div class="flex flex-col gap-[10px] cursor-pointer" routerLink="accessories">
+        <img [src]="shades" class="hover:opacity-60" alt="shades-image">
+        <p class="uppercase tracking-wide text-xs lg:text-base">shades of the season</p>
+      </div>
+      <div class="flex flex-col gap-[10px] cursor-pointer" routerLink="bags">
+        <img [src]="bags" class="hover:opacity-60" alt="bags-image">
+        <p class="uppercase tracking-wide text-xs lg:text-base">exclusive men's bags</p>
+      </div>
+      <div class="flex flex-col gap-[10px] cursor-pointer" routerLink="sneakers">
+        <img [src]="sneakers" class="hover:opacity-60" alt="sneakers-image">
+        <p class="uppercase tracking-wide text-xs lg:text-base">Fashionable Sneakers</p>
+      </div>
+      <div class="flex flex-col gap-[10px] cursor-pointer" routerLink="jewelry">
+        <img [src]="watch" class="hover:opacity-60" alt="watch-image">
+        <p class="uppercase tracking-wide text-xs lg:text-base">Expensive Jewelry</p>
+      </div>
+    </div>
+  </div>
+</div>

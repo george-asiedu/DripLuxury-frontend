@@ -1,0 +1,118 @@
+<app-navbar/>
+<div class="w-full px-[6%] lg:px-[5%] flex flex-col gap-[1rem] mt-[4.8rem] md:mt-[6rem]">
+    <div *ngIf="isLoading">
+        <app-spinner></app-spinner>
+    </div>
+    <div *ngIf="error && !isLoading">
+        {{ error }}
+    </div>
+    <div *ngIf="!isLoading && !error" class="flex flex-col gap-[2rem] lg:mb-[3rem]">
+        <div class="grid template grid-cols-1 gap-[1rem] md:gap-[2rem] lg:gap-[3rem] mb-[1.3rem] md:mb-[2rem]">
+            <div class="flex items-center gap-[1rem]">
+                <img [src]="productDetails.productImage" class="w-[49%]" alt="productDetails.name">
+                <img [src]="productDetails.imageOverlay" class="w-[49%]" alt="productDetails.name">
+            </div>
+            <div class="flex flex-col gap-[1rem]">
+                <div class="mb-[20px] 2xl:mb-[2rem]">
+                    <h4 class="tracking-wide font-semibold md:text-lg lg:text-xl mb-[3px]">{{ productDetails.name }}</h4>
+                    <p class="tracking-wide text-xs md:text-sm mb-[20px]">{{ productDetails.shortDescription }}</p>
+                    <span class="flex items-center gap-[5px]">
+                        <p class="tracking-wide text-sm line-through">{{ productDetails.price | currency }}</p>
+                        <p class="tracking-wide text-sm">-50%</p>
+                    </span>
+                    <p class="tracking-wide text-lg font-medium text-red">{{ productDetails.price * .5 | currency }}</p>
+                </div>
+                <div *ngIf="productDetails.type.includes('sale')" class="mb-[1rem] 2xl:mb-[2.5rem]">
+                    <button type="button" routerLink="/men-category/sales" class="bg-lightGray px-[1.5rem] py-[8px] underline rounded-xl font-medium w-fit text-xs md:text-sm">Shop All Sale</button>
+                </div>
+                <label for="size" class="font-medium text-sm -mb-3">Select your size</label>
+                <select name="size" id="size" aria-label="Select Size" class="border text-sm border-grey hover:border-violet px-[1rem] py-[8px] rounded-lg focus:outline-none focus:border-violet cursor-pointer">
+                    <option *ngFor="let size of productDetails.sizes" [value]="size">{{ size }}</option>
+                </select>
+                <div class="flex flex-col md:flex-row gap-[10px] 2xl:mb-[2rem]">
+                    <button type="button" routerLink="cart" class="bg-black text-white text-sm md:w-full lg:w-[62%] py-[10px] rounded-lg tracking-wide hover:opacity-90">Add To Bag</button>
+                    <button type="button" class="flex items-center justify-center gap-[8px] bg-white border border-grey hover:border-violet text-black text-sm md:w-full lg:w-[38%] py-[10px] rounded-lg tracking-wide">
+                        Wishlist
+                        <span>
+                            <svg width="20px" height="20px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="#000000" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                                <path d="M9.06,25C7.68,17.3,12.78,10.63,20.73,10c7-.55,10.47,7.93,11.17,9.55a.13.13,0,0,0,.25,0c3.25-8.91,9.17-9.29,11.25-9.5C49,9.45,56.51,13.78,55,23.87c-2.16,14-23.12,29.81-23.12,29.81S11.79,40.05,9.06,25Z"></path></g>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <span class="mb-[10px] lg:mb-[1rem] 2xl:mb-[2rem]">
+                    <h5 class="uppercase tracking-wide text-sm md:text-base font-medium">estimated delivery</h5>
+                    <p class="text-xs md:text-sm tracking-wide">8 days - 20 days</p>
+                </span>
+                <div class="bg-lightGray px-[1.5rem] py-[2rem]">
+                    <h5 class="uppercase tracking-wide font-medium mb-[10px]">enjoy free returns</h5>
+                    <p class="tracking-wide text-sm">Return your purchase for free withing 14 days</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full">
+            <h5 class="uppercase font-medium tracking-wide mb-[1rem] md:mb-[1.5rem]">the details</h5>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <div class="flex flex-col gap-[1rem] md:mb-0">
+                    <span>
+                        <h4 class="tracking-wide font-semibold md:text-lg lg:text-xl mb-[5px]">{{ productDetails.name }}</h4>
+                        <p class="tracking-wide text-xs md:text-sm mb-[10px]">{{ productDetails.shortDescription }}</p>
+                    </span>
+                    <p class="tracking-wide text-xs md:text-sm mb-[20px] md:mb-[10px] lg:mb-[20px] md:w-[350px]">{{ productDetails.longDescription }}</p>
+                    <span *ngIf="productDetails.highlights.length != 0">
+                        <h6 class="font-semibold tracking-wide text-sm mb-[10px]">Highlights</h6>
+                        <ul *ngFor="let list of productDetails.highlights" class="marker:text-black list-disc px-[15px] tracking-wide text-sm">
+                            <li>{{list}}</li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="flex md:hidden lg:flex flex-col gap-[1rem]">
+                    <span class="mb-[20px]">
+                        <h4 class="font-semibold tracking-wide text-sm md:text-base mb-[5px]">Composition</h4>
+                        <p 
+                            *ngFor="let list of productDetails.composition"
+                            class="tracking-wide text-xs md:text-sm"
+                        >
+                            {{list}}
+                        </p>
+                    </span>
+                    <span *ngIf="productDetails.washingInstructions.length != 0">
+                        <h4 class="font-semibold tracking-wide text-sm md:text-base mb-[5px]">Washing instructions</h4>
+                        <p class="tracking-wide text-xs md:text-sm">{{productDetails.washingInstructions}}</p>
+                    </span>
+                </div>
+                <div class="hidden md:block">
+                    <img [src]="productDetails.detailsImage" alt="productDetails.name">
+                </div>
+                <div class="hidden md:flex -mt-[6rem] lg:hidden flex-col gap-[1rem]">
+                    <span class="mb-[20px]">
+                        <h4 class="font-semibold tracking-wide text-sm md:text-base mb-[5px]">Composition</h4>
+                        <p 
+                            *ngFor="let list of productDetails.composition"
+                            class="tracking-wide text-xs md:text-sm"
+                        >
+                            {{list}}
+                        </p>
+                    </span>
+                    <span>
+                        <h4 class="font-semibold tracking-wide text-sm md:text-base mb-[5px]">Washing instructions</h4>
+                        <p class="tracking-wide text-xs md:text-sm">{{productDetails.washingInstructions}}</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<div class="w-full px-[6%] lg:px-[5%] mt-[2rem]">
+    <h3 class="tracking-wide font-medium lg:text-lg mb-[15px]">Recently viewed</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-[12px]">
+        <app-product-card 
+            *ngFor="let product of recentlyViewedProducts" [productItems]="product"
+        >
+        </app-product-card>
+    </div>
+</div>
+<app-subscription/>
+<app-footer/>

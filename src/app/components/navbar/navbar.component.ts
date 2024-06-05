@@ -18,7 +18,7 @@ export class NavbarComponent {
   faShoppingCart = faShoppingCart
 
   openSideNav(): void {
-    document.getElementById("sidenav")!.style.width = "200px"
+    document.getElementById("sidenav")!.style.width = "100%"
   }
 
   closeSideNav(): void {

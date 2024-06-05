@@ -1,0 +1,50 @@
+.img {
+  background-image: url("https://img.freepik.com/free-photo/cheerful-young-woman-stylish-red-dress-holding-shopping-bags-smiling-buying-promo-offe_1258-158700.jpg?t=st=1717413502~exp=1717417102~hmac=4769e3f055b224f98299c3b2b03f8d48ec7a49484a5da2a05dcca1bdf8061385&w=1380");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .text {
+    background-image: linear-gradient(#807D7E , rgb(37, 37, 37));
+    opacity: 0.9;
+  }
+
+  .bg-text {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+.overlay {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  transition: .5s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .overlay {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 3rem;
+    padding-left: 2rem;
+    top: 25%;
+    left: 25%;
+    -webkit-transform: translate(-25%, -25%);
+    -ms-transform: translate(-25%, -25%);
+    transform: translate(-25%, -25%);
+  }
+}

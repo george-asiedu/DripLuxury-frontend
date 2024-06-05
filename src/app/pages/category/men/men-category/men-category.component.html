@@ -1,0 +1,75 @@
+<app-navbar/>
+
+<div class="hidden w-full fixed top-1 z-[1] mt-[3.5rem] md:flex md:items-center md:justify-between md:px-[6%] md:py-[1.5%] bg-white h-auto">
+  <nav class="flex items-center md:gap-[10px] lg:gap-[16px]">
+    <a
+      routerLink="sales"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Sales
+    </a>
+    <a
+      routerLink="new-in"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">New in
+    </a>
+    <a
+      routerLink="vacation"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Vacation
+    </a>
+    <a
+      routerLink="clothing"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Clothing
+    </a>
+    <a
+      routerLink="shoes"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Shoes
+    </a>
+    <a
+      routerLink="sneakers"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Sneakers
+    </a>
+    <a
+      routerLink="bags"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Bags
+    </a>
+    <a
+      routerLink="accessories"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Accessories
+    </a>
+    <a
+      routerLink="jewelry"
+      routerLinkActive="filter-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="hover:text-violet md:text-[12px] lg:text-base">Jewelry
+    </a>
+  </nav>
+
+  <div class="md:w-[180px] lg:w-[300px] bg-white flex items-center gap-[10px] px-[16px] py-[10px] border border-grey rounded-lg focus-within:border-violet">
+    <fa-icon [icon]="faSearch" class="text-grey"></fa-icon>
+    <input
+      type="search"
+      placeholder="Search"
+      class="w-full placeholder:text-sm placeholder:text-black focus:caret-violet text-black focus:outline-none"
+    >
+  </div>
+</div>
+
+<div class="mt-[7rem] md:mt-[10rem]">
+  <router-outlet/>
+</div>
+<app-subscription/>
+<app-footer/>

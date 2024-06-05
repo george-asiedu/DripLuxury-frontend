@@ -1,0 +1,27 @@
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-[1rem] my-[2rem] md:my-[4rem] px-[6%] lg:px-[5%]">
+    <div class="block">
+      <h2 class="mb-[10px] font-bold uppercase tracking-wide md:text-lg lg:text-2xl">Never miss a thing</h2>
+      <p class="text-xs md:text-[15px] tracking-wide">
+        Sign up for promotions, tailored new arrivals, stock updates and more
+        straight to your inbox
+      </p>
+    </div>
+    <div class="flex flex-col gap-[16px]">
+      <h4 class="text-sm md:text-base uppercase tracking-wide font-medium">get updates via email</h4>
+      <form class="flex flex-col gap-[16px]">
+        <input 
+          type="email" 
+          id="email"
+          placeholder="Your email address" 
+          class="lg:w-[60%] border border-grey py-[10px] px-[1rem] placeholder:text-sm caret-violet hover:border-violet cursor-pointer focus:outline-none focus:border-violet rounded-md"
+        >
+        <button type="submit" class="bg-black hover:opacity-90 text-white py-[10px] px-[1.5rem] text-sm rounded-md w-full md:w-fit">Sign Up</button>
+        <p class="text-xs md:text-[15px] tracking-wide">
+          By signing up, you consent to receiving marketing by email and 
+          acknowledge you have read our 
+          <a routerLink="policy-privacy" class="underline font-medium tracking-wide">Privacy Policy.</a>
+          Unsubscribe anytime at the bottom of our emails.
+        </p>
+      </form>
+    </div>
+</div>
